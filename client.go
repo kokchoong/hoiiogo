@@ -31,7 +31,7 @@ func NewClient(appId, accessToken string) *HoiioClient {
 func (client *HoiioClient) post(values url.Values, uri string) ([]byte, error) {
 	req, err := http.NewRequest("POST", ROOT+uri, strings.NewReader(values.Encode()))
   
-  fmt.Printf("here in client post")
+  fmt.Printf("here in client post : %s \n", ROOT+uri)
   
 	if err != nil {
 		return nil, err
