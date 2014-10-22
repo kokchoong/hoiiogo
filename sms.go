@@ -6,7 +6,7 @@ import (
   "fmt"
 )
 
-const API_SMS_URL = "sms/send"
+const API_SMS_URL = "/sms/send"
 
 type HoiioResponse struct {
   TxnId string `json:"txn_ref"`
