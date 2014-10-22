@@ -37,25 +37,36 @@ func (client *HoiioClient) post(values url.Values, uri string) ([]byte, error) {
 		return nil, err
 	}
   
-  fmt.Printf("Posting")
+  fmt.Printf("Posting 1 ")
   
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	httpClient := &http.Client{}
-
+fmt.Printf("Posting 2 ")
+  
 	res, err := httpClient.Do(req)
-
+fmt.Printf("Posting 3 ")
+  
+  
 	if err != nil {
 		return nil, err
 	}
+  
+  fmt.Printf("Posting 4 ")
 
 	defer res.Body.Close()
 
+  fmt.Printf("Posting 5 ")
+
 	body, err := ioutil.ReadAll(res.Body)
+
+  fmt.Printf("Posting 6 ")
 
 	if err != nil {
 		return body, err
 	}
-
+  
+    fmt.Printf("Posting 7 ")
+  
 	if res.StatusCode != 200 && res.StatusCode != 201 {
 		if res.StatusCode == 500 {
 			return body, Error{"Server Error"}
