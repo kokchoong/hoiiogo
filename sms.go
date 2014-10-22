@@ -13,7 +13,7 @@ type HoiioResponse struct {
 	Status string `json:"status"`
 }
 
-func SendMessage(client Client, dest, msg, senderName, tag, notifyURL string) (*HoiioResponse, error) {
+func SendMessage(client Client, senderName, dest, msg, tag, notifyURL string) (*HoiioResponse, error) {
 	fmt.Printf("send message 1")
   var hoiioResponse *HoiioResponse
   
