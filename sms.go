@@ -3,7 +3,6 @@ package hoiiogo
 import (
 	"encoding/json"
 	"net/url"
-  "fmt"
 )
 
 const API_SMS_URL = "/sms/send"
@@ -14,7 +13,7 @@ type HoiioResponse struct {
 }
 
 func SendMessage(client Client, senderName, dest, msg, tag, notifyURL string) (*HoiioResponse, error) {
-	fmt.Printf("send message 1")
+
   var hoiioResponse *HoiioResponse
   
   params := url.Values{}
@@ -27,14 +26,9 @@ func SendMessage(client Client, senderName, dest, msg, tag, notifyURL string) (*
   params.Set("tag", tag)
   params.Set("notify_url", notifyURL)
   
-  fmt.Printf("send message 2")
-	
   res, err := client.post(params, API_SMS_URL)
-
-  fmt.Printf("send message 3")
   
 	if err != nil {
-    fmt.Printf("send message 4")
 		return hoiioResponse, err
 	}
 

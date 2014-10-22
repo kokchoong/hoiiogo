@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-  "fmt"
 )
 
 const ROOT = "https://secure.hoiio.com/open"
@@ -24,49 +23,32 @@ type HoiioClient struct {
 }
 
 func NewClient(appId, accessToken string) *HoiioClient {
-  fmt.Printf("creating new client")
 	return &HoiioClient{appId, accessToken}
 }
 
 func (client *HoiioClient) post(values url.Values, uri string) ([]byte, error) {
 	req, err := http.NewRequest("POST", ROOT+uri, strings.NewReader(values.Encode()))
-  
-  fmt.Printf("here in client post : %s \n", ROOT+uri)
-  
+    
 	if err != nil {
 		return nil, err
 	}
-  
-  fmt.Printf("Posting 1 ")
   
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	httpClient := &http.Client{}
-fmt.Printf("Posting 2 ")
   
 	res, err := httpClient.Do(req)
-fmt.Printf("Posting 3 ")
-  
-  
+    
 	if err != nil {
 		return nil, err
 	}
   
-  fmt.Printf("Posting 4 ")
+  defer res.Body.Close()
 
-	defer res.Body.Close()
-
-  fmt.Printf("Posting 5 ")
-
-	body, err := ioutil.ReadAll(res.Body)
-
-  fmt.Printf("\n\n%s\n\n", string(body))
-  fmt.Printf("Posting 6 ")
+  body, err := ioutil.ReadAll(res.Body)
 
 	if err != nil {
 		return body, err
 	}
-  
-    fmt.Printf("Posting 7 ")
   
 	if res.StatusCode != 200 && res.StatusCode != 201 {
 		if res.StatusCode == 500 {
