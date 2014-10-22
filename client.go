@@ -59,6 +59,7 @@ fmt.Printf("Posting 3 ")
 
 	body, err := ioutil.ReadAll(res.Body)
 
+  fmt.Printf("\n\n%s\n\n", string(body))
   fmt.Printf("Posting 6 ")
 
 	if err != nil {
