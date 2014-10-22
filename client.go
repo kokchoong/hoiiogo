@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+  "fmt"
 )
 
 const ROOT = "https://secure.hoiio.com/open"
@@ -23,16 +24,21 @@ type HoiioClient struct {
 }
 
 func NewClient(appId, accessToken string) *HoiioClient {
+  fmt.Printf("creating new client")
 	return &HoiioClient{appId, accessToken}
 }
 
 func (client *HoiioClient) post(values url.Values, uri string) ([]byte, error) {
 	req, err := http.NewRequest("POST", ROOT+uri, strings.NewReader(values.Encode()))
-
+  
+  fmt.Printf("here in client post")
+  
 	if err != nil {
 		return nil, err
 	}
-
+  
+  fmt.Printf("Posting")
+  
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	httpClient := &http.Client{}
 
