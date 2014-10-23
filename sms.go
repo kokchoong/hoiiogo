@@ -27,10 +27,6 @@ func SendMessage(client Client, senderName, dest, msg, tag, notifyURL string) (*
   params.Set("notify_url", notifyURL)
   
   res, err := client.post(params, API_SMS_URL)
-  
-	if err != nil {
-		return hoiioResponse, err
-	}
 
 	hoiioResponse = new(HoiioResponse)
 	err = json.Unmarshal(res, hoiioResponse)
