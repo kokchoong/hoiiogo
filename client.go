@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+  "fmt"
 )
 
 const ROOT = "https://secure.hoiio.com/open"
@@ -40,6 +41,8 @@ func (h *HoiioClient) Do(values url.Values, uri string) ([]byte, error) {
   if err != nil {
     return nil, err
   }
+  
+  fmt.Println(ROOT+uri)
   
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	httpClient := &http.Client{}
