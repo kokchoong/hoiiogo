@@ -21,11 +21,11 @@ type HoiioClient struct {
 	accessToken string
 }
 
-function (h *HoiioClient) AppId() string {
+func (h *HoiioClient) AppId() string {
   return h.appId;
 }
 
-function (h *HoiioClient) AccessToken() string {
+func (h *HoiioClient) AccessToken() string {
   return h.accessToken;
 }
 
@@ -33,13 +33,9 @@ func NewClient(appId, accessToken string) *HoiioClient {
 	return &HoiioClient{appId, accessToken}
 }
 
-func (client *HoiioClient) Do(values url.Values, uri string) ([]byte, error) {
-	req, err := http.NewRequest("POST", ROOT+uri, strings.NewReader(values.Encode()))
-    
-	if err != nil {
-		return nil, err
-	}
+func (h *HoiioClient) Do(values url.Values, uri string) ([]byte, error) {
   
+	req, err := http.NewRequest("POST", ROOT+uri, strings.NewReader(values.Encode()))
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	httpClient := &http.Client{}
   
@@ -50,7 +46,6 @@ func (client *HoiioClient) Do(values url.Values, uri string) ([]byte, error) {
 	}
   
   defer res.Body.Close()
-
   body, err := ioutil.ReadAll(res.Body)
 
 	if err != nil {
