@@ -105,11 +105,3 @@ func (client *HoiioClient) get(queryParams url.Values, uri string) ([]byte, erro
 
 	return body, err
 }
-
-func (client *HoiioClient) AppId() string {
-	return client.appId
-}
-
-func (client *HoiioClient) AccessToken() string {
-	return client.accessToken
-}
