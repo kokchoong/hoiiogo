@@ -36,6 +36,11 @@ func NewClient(appId, accessToken string) *HoiioClient {
 func (h *HoiioClient) Do(values url.Values, uri string) ([]byte, error) {
   
 	req, err := http.NewRequest("POST", ROOT+uri, strings.NewReader(values.Encode()))
+  
+  if err != nil {
+    return nil, err
+  }
+  
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	httpClient := &http.Client{}
   
@@ -47,19 +52,15 @@ func (h *HoiioClient) Do(values url.Values, uri string) ([]byte, error) {
   
   defer res.Body.Close()
   body, err := ioutil.ReadAll(res.Body)
-
-	if err != nil {
-		return body, err
-	}
+  
+  if err != nil {
+    return body, err
+  }
   
 	if res.StatusCode != 200 && res.StatusCode != 201 {
-		if res.StatusCode == 500 {
-			return body, Error{"Server Error"}
-		} else {
 			hoiioError := new(HoiioError)
 			json.Unmarshal(body, hoiioError)
 			return body, hoiioError
-		}
 	}
 
 	return body, err
