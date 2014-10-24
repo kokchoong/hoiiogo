@@ -65,3 +65,9 @@ func (h *HoiioClient) Do(values url.Values, uri string) ([]byte, error) {
 
 	return body, err
 }
+
+func check(e error) {
+    if e != nil {
+        panic(e)
+    }
+}
