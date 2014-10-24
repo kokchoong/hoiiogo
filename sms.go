@@ -17,8 +17,8 @@ func SendMessage(client Client, senderName, dest, msg, tag, notifyURL string) (*
   var hoiioResponse *HoiioResponse
   
   params := url.Values{}
-  params.Set("app_id", client.AppId())
-  params.Set("access_token", client.AccessToken())
+  params.Set("app_id", client.appId)
+  params.Set("access_token", client.accessToken)
 	params.Set("dest", dest)
   params.Set("dest", dest)
 	params.Set("sender_name", senderName)
@@ -26,7 +26,7 @@ func SendMessage(client Client, senderName, dest, msg, tag, notifyURL string) (*
   params.Set("tag", tag)
   params.Set("notify_url", notifyURL)
   
-  res, err := client.post(params, API_SMS_URL)
+  res, err := client.do(params, API_SMS_URL)
 
 	hoiioResponse = new(HoiioResponse)
 	err = json.Unmarshal(res, hoiioResponse)
