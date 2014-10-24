@@ -17,8 +17,8 @@ func SendMessage(client Client, senderName, dest, msg, tag, notifyURL string) (*
   var hoiioResponse *HoiioResponse
   
   params := url.Values{}
-  params.Set("app_id", client.appId)
-  params.Set("access_token", client.accessToken)
+  params.Set("app_id", client.AppId())
+  params.Set("access_token", client.AccessToken())
 	params.Set("dest", dest)
   params.Set("dest", dest)
 	params.Set("sender_name", senderName)
