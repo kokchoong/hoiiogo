@@ -36,7 +36,7 @@ func SendFaxByFilePath(client Client, dest, filepath, filename, callerId, faxHea
   params.Set("tag", tag)
   params.Set("notify_url", notifyURL)
   
-  res, err := client.Do(params, API_SMS_URL)
+  res, err := client.Do(params, API_FAX_URL)
 
 	faxTxn = new(FaxTxn)
 	err = json.Unmarshal(res, faxTxn)
