@@ -23,6 +23,7 @@ func CSendFax(app *App, fileBase64 string, recipients []string, batchSize int) {
   for i := 0; i < totalSize; i++ {
     fmt.Println(<-ch)
   }
+  
 }
 
 func CSendFaxProcess(app *App, dest, fileBase64, filename, callerId, faxHeader, tag, notifyURL string, ch chan []string) {
