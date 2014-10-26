@@ -2,12 +2,20 @@ package hoiiogo
 
 import (
   "encoding/base64"
+  "io/ioutil"
   "fmt"
 )
 
-func EncodeFile(bytes []byte) (b64 string) {
-  b64 = base64.URLEncoding.EncodeToString(bytes)
-  return b64
+func ReadFile(filepath string) (file []byte, err error) {
+
+  file, err = ioutil.ReadFile(filepath)
+  defer CatchPanic(err)
+  
+  return file, err
+}
+
+func EncodeFile(bytes []byte) (string) {
+  return base64.URLEncoding.EncodeToString(bytes)
 }
 
 func CatchPanic(err error) {
