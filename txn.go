@@ -4,6 +4,7 @@ import (
   "net/http"
   "encoding/json"
   "io/ioutil"
+  "fmt"
 )
 
 type Txn struct {
@@ -18,6 +19,7 @@ func NewTxn(res *http.Response) (txn *Txn, err error) {
   txn = new(Txn)
   err = json.Unmarshal(body, txn)
   txn.HttpStatusCode = res.StatusCode
+  fmt.Println(txn.Id() + " - " + txn.Status())
   return txn, err
 }
 

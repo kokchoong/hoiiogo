@@ -19,8 +19,8 @@ func EncodeFile(bytes []byte) (string) {
 }
 
 func CatchPanic(err error) {
-  if r := recover()
-  r != nil {
+  if r := recover(); r != nil {
+    fmt.Println(err)
     err = fmt.Errorf("%v", r)
   }
 }
