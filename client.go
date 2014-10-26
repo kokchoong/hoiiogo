@@ -35,12 +35,12 @@ func (h *HoiioClient) AccessToken() string {
 }
 
 func NewClient(appId, accessToken string) *HoiioClient {
-	return &HoiioClient{appId, accessToken}
+  return &HoiioClient{appId, accessToken}
 }
 
 func (h *HoiioClient) Do(values url.Values, uri string) ([]byte, error) {
   
-	req, err := http.NewRequest("POST", ROOT+uri, strings.NewReader(values.Encode()))
+  req, err := http.NewRequest("POST", ROOT+uri, strings.NewReader(values.Encode()))
   
   if err != nil {
     return nil, err
@@ -48,14 +48,14 @@ func (h *HoiioClient) Do(values url.Values, uri string) ([]byte, error) {
   
   fmt.Println(ROOT+uri)
   
-	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
-	httpClient := &http.Client{}
+  req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+  httpClient := &http.Client{}
+ 
+  res, err := httpClient.Do(req)
   
-	res, err := httpClient.Do(req)
-    
-	if err != nil {
-		return nil, err
-	}
+  if err != nil {
+    return nil, err
+  }
   
   defer res.Body.Close()
   body, err := ioutil.ReadAll(res.Body)
@@ -64,17 +64,11 @@ func (h *HoiioClient) Do(values url.Values, uri string) ([]byte, error) {
     return body, err
   }
   
-	if res.StatusCode != 200 && res.StatusCode != 201 {
-			hoiioError := new(HoiioError)
-			json.Unmarshal(body, hoiioError)
-			return body, hoiioError
-	}
-
-	return body, err
-}
-
-func check(e error) {
-    if e != nil {
-        panic(e)
-    }
+  if res.StatusCode != 200 && res.StatusCode != 201 {
+    hoiioError := new(HoiioError)
+    json.Unmarshal(body, hoiioError)
+    return body, hoiioError
+  }
+  
+  return body, err
 }
