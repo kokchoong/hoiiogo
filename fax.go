@@ -5,7 +5,7 @@ import (
   "io/ioutil"
 )
 
-func SendFaxByFilePath(app Service, dest, filepath, filename, callerId, faxHeader, tag, notifyURL string) (*Txn, error) {
+func SendFaxByFilePath(app *App, dest, filepath, filename, callerId, faxHeader, tag, notifyURL string) (*Txn, error) {
   
   file, err := ioutil.ReadFile(filepath)
   
@@ -17,7 +17,7 @@ func SendFaxByFilePath(app Service, dest, filepath, filename, callerId, faxHeade
   return SendFax(app, dest, fileBase64, filename, callerId, faxHeader, tag, notifyURL)
 }
 
-func SendFax(app Service, dest, fileBase64, filename, callerId, faxHeader, tag, notifyURL string) (*Txn, error) {
+func SendFax(app *App, dest, fileBase64, filename, callerId, faxHeader, tag, notifyURL string) (*Txn, error) {
   
   params := url.Values{}
   params.Set("app_id", app.AppId())

@@ -4,7 +4,7 @@ import (
   "net/url"
 )
 
-func SendSMS(app Service, dest, msg, senderName, tag, notifyURL string) (*Txn, error) {
+func SendSMS(app *App, dest, msg, senderName, tag, notifyURL string) (*Txn, error) {
   
   params := url.Values{}
   params.Set("app_id", app.AppId())

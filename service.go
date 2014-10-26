@@ -12,13 +12,6 @@ const (
   SMS_API = "/sms/send"
 )
 
-type Service interface {
-  NewService(string, string) *App
-  Do(url.Values, string) (*Txn, error)
-  AppId() string
-  AccessToken() string
-}
-
 type App struct {
   appId string
   accessToken string
@@ -32,7 +25,7 @@ func (h *App) AccessToken() string {
   return h.accessToken
 }
 
-func NewService(appId, accessToken string) *App {
+func NewApp(appId, accessToken string) *App {
   return &App{appId, accessToken}
 }
 
