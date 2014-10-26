@@ -26,3 +26,11 @@ func SendFax(app *App, dest, fileBase64, filename, callerId, faxHeader, tag, not
   params.Set("notify_url", notifyURL)
   return app.Do(params, FAX_SEND)
 }
+
+func ReadFaxStatus(app *App, txn *Txn) (*Txn, error) {
+  params := url.Values{}
+  params.Set("app_id", app.AppId())
+  params.Set("access_token", app.AccessToken())
+  params.Set("txn_ref", txn.Id())
+  return app.Do(params, FAX_SEND)
+}

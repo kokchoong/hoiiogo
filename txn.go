@@ -7,9 +7,9 @@ import (
 )
 
 type Txn struct {
-  Id string `json:"txn_ref"`
-  Status string `json:"status"`
-  statusCode int
+  TxnId string `json:"txn_ref"`
+  TxnStatus string `json:"status"`
+  StatusCode int
 }
 
 func NewTxn(res *http.Response) (txn *Txn, err error) {
@@ -17,10 +17,14 @@ func NewTxn(res *http.Response) (txn *Txn, err error) {
   body, err := ioutil.ReadAll(res.Body)
   txn = new(Txn)
   err = json.Unmarshal(body, txn)
-  txn.statusCode = res.StatusCode
+  txn.StatusCode = res.StatusCode
   return txn, err
 }
 
-func (txn *Txn) PrintStatus() string {
-  return txn.Status
+func (txn *Txn) Id() string {
+  return txn.TxnId
+}
+
+func (txn *Txn) Status() string {
+  return txn.TxnStatus
 }

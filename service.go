@@ -13,6 +13,7 @@ const (
   SMS_BULK_SEND = "/sms/bulk_send"
   
   FAX_SEND = "/fax/send"
+  FAX_SEND_STATUS = "/fax/query_status"
   
   IVR_DIAL = "/ivr/start/dial"
   IVR_PLAY = "/ivr/middle/play"
