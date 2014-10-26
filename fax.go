@@ -2,7 +2,6 @@ package hoiiogo
 
 import (
   "net/url"
-  "fmt"
 )
 
 func SendFaxByFilePath(app *App, dest, filepath, filename, callerId, faxHeader, tag, notifyURL string) (*Txn, error) {
@@ -15,8 +14,6 @@ func SendFaxByFilePath(app *App, dest, filepath, filename, callerId, faxHeader, 
 }
 
 func SendFax(app *App, dest, fileBase64, filename, callerId, faxHeader, tag, notifyURL string) (*Txn, error) {
-  
-  fmt.Println("sending " + fileBase64 + " to " + dest)
   params := url.Values{}
   params.Set("app_id", app.AppId())
   params.Set("access_token", app.AccessToken())
