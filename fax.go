@@ -37,8 +37,7 @@ func SendFax(client Client, dest, fileBase64, filename, callerId, faxHeader, tag
   
   res, err := client.Do(params, FAX_API)
   
-  var faxTxn *FaxTxn
-  faxTxn = new(FaxTxn)
+  faxTxn := new(FaxTxn)
   err = json.Unmarshal(res, faxTxn)
   
   return faxTxn, err
