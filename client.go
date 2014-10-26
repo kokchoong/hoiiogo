@@ -1,11 +1,11 @@
 package hoiiogo
 
 import (
-	"encoding/json"
-	"io/ioutil"
-	"net/http"
-	"net/url"
-	"strings"
+  "encoding/json"
+  "io/ioutil"
+  "net/http"
+  "net/url"
+  "strings"
   "fmt"
 )
 
