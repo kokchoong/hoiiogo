@@ -26,6 +26,11 @@ type HoiioClient struct {
   accessToken string
 }
 
+type HoiioTxn struct {
+  TxnId string `json:"txn_ref"`
+  Status string `json:"status"`
+}
+
 func (h *HoiioClient) AppId() string {
   return h.appId;
 }
