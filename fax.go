@@ -7,8 +7,6 @@ import (
   "io/ioutil"
 )
 
-
-
 type FaxTxn struct {
   TxnId string `json:"txn_ref"`
   Status string `json:"status"`
