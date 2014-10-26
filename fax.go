@@ -1,8 +1,8 @@
 package hoiiogo
 
 import (
-	"encoding/json"
-	"net/url"
+  "encoding/json"
+  "net/url"
   "encoding/base64"
   "io/ioutil"
 )
@@ -11,12 +11,13 @@ import (
 
 type FaxTxn struct {
   TxnId string `json:"txn_ref"`
-	Status string `json:"status"`
+  Status string `json:"status"`
 }
 
 func SendFaxByFilePath(client Client, dest, filepath, filename, callerId, faxHeader, tag, notifyURL string) (*FaxTxn, error) {
-
+  
   file, err := ioutil.ReadFile(filepath)
+  
   if err != nil {
     panic(err)
   }
@@ -29,22 +30,20 @@ func SendFax(client Client, dest, fileBase64, filename, callerId, faxHeader, tag
   
   params := url.Values{}
   params.Set("app_id", client.AppId())
-  params.Set("access_token", client.AccessToken())
-	params.Set("dest", dest)
   params.Set("file", fileBase64)
-	params.Set("filename", filename)
-	params.Set("caller_id", callerId)
+  params.Set("filename", filename)
+  params.Set("caller_id", callerId)
   params.Set("fax_header", faxHeader)
   params.Set("tag", tag)
   params.Set("notify_url", notifyURL)
   
   res, err := client.Do(params, FAX_API)
-
-  var faxTxn *FaxTxn
-	faxTxn = new(FaxTxn)
-	err = json.Unmarshal(res, faxTxn)
   
-	return faxTxn, err
+  var faxTxn *FaxTxn
+  faxTxn = new(FaxTxn)
+  err = json.Unmarshal(res, faxTxn)
+  
+  return faxTxn, err
 }
 
 func EncodeFile(bytes []byte) (b64 string) {
