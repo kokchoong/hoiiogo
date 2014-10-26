@@ -5,7 +5,6 @@ import (
 )
 
 func SendFaxByFilePath(app *App, dest, filepath, filename, callerId, faxHeader, tag, notifyURL string) (*Txn, error) {
-  
   file, err := ReadFile(filepath)
   if err != nil {
     return nil, err
@@ -15,7 +14,6 @@ func SendFaxByFilePath(app *App, dest, filepath, filename, callerId, faxHeader, 
 }
 
 func SendFax(app *App, dest, fileBase64, filename, callerId, faxHeader, tag, notifyURL string) (*Txn, error) {
-  
   params := url.Values{}
   params.Set("app_id", app.AppId())
   params.Set("access_token", app.AccessToken())
@@ -26,6 +24,5 @@ func SendFax(app *App, dest, fileBase64, filename, callerId, faxHeader, tag, not
   params.Set("fax_header", faxHeader)
   params.Set("tag", tag)
   params.Set("notify_url", notifyURL)
-  
-  return app.Do(params, FAX_API)
+  return app.Do(params, FAX_SEND)
 }

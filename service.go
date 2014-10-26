@@ -8,8 +8,21 @@ import (
 
 const (
   ROOT = "https://secure.hoiio.com/open"
-  FAX_API = "/fax/send"
-  SMS_API = "/sms/send"
+  
+  SMS_SEND = "/sms/send"
+  SMS_BULK_SEND = "/sms/bulk_send"
+  
+  FAX_SEND = "/fax/send"
+  
+  IVR_DIAL = "/ivr/start/dial"
+  IVR_PLAY = "/ivr/middle/play"
+  IVR_GATHER = "/ivr/middle/gather"
+  IVR_RECORD = "/ivr/middle/record"
+  IVR_MONITOR = "/ivr/middle/monitor"
+  IVR_HOLD = "/ivr/middle/hold"
+  IVR_UNHOLD = "/ivr/middle/unhold"
+  IVR_TRANSFER = "/ivr/end/transfer"
+  IVR_HANGUP = "/ivr/end/hangup"
 )
 
 type App struct {
