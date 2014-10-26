@@ -4,11 +4,10 @@ import (
   "net/url"
 )
 
-func SendBulkSMS(app *App, dest, recipients, msg, senderName, tag, notifyURL string) (*Txn, error) { 
+func SendBulkSMS(app *App, recipients, msg, senderName, tag, notifyURL string) (*Txn, error) { 
   params := url.Values{}
   params.Set("app_id", app.AppId())
   params.Set("access_token", app.AccessToken())
-  params.Set("dest", dest)
   params.Set("recipients", recipients)
   params.Set("msg", msg)
   params.Set("sender_name", senderName)
