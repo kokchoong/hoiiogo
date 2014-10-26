@@ -16,14 +16,14 @@ const (
 )
 
 type Client interface {
-	Do(url.Values, string) ([]byte, error)
+  Do(url.Values, string) ([]byte, error)
   AppId() string
   AccessToken() string
 }
 
 type HoiioClient struct {
-	appId string
-	accessToken string
+  appId string
+  accessToken string
 }
 
 func (h *HoiioClient) AppId() string {
