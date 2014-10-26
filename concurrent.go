@@ -34,3 +34,4 @@ func CSendFaxProcess(app *App, dest, fileBase64, filename, callerId, faxHeader, 
     ch <- []string{"", err.Error()}    
   }
 }
+
