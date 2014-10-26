@@ -6,7 +6,7 @@ import (
 )
 
 func CSendFax(app *App, fileBase64 string, recipients []string, batchSize int) {
-
+  
   totalSize := len(recipients)
   ch := make(chan []string, totalSize)
   
@@ -17,7 +17,7 @@ func CSendFax(app *App, fileBase64 string, recipients []string, batchSize int) {
       i++
       j++
     }
-    time.Sleep(10 * time.Second)
+    time.Sleep(120 * time.Second)
   }
   
   for i := 0; i < totalSize; i++ {
@@ -34,4 +34,3 @@ func CSendFaxProcess(app *App, dest, fileBase64, filename, callerId, faxHeader, 
     ch <- []string{"", err.Error()}    
   }
 }
-
