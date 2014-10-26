@@ -5,16 +5,12 @@ import (
 	"net/url"
 )
 
-const API_SMS_URL = "/sms/send"
-
 type SMSTxn struct {
   TxnId string `json:"txn_ref"`
 	Status string `json:"status"`
 }
 
 func SendSMS(client Client, dest, msg, senderName, tag, notifyURL string) (*SMSTxn, error) {
-
-  var smsTxn *SMSTxn
   
   params := url.Values{}
   params.Set("app_id", client.AppId())
@@ -25,8 +21,9 @@ func SendSMS(client Client, dest, msg, senderName, tag, notifyURL string) (*SMST
   params.Set("tag", tag)
   params.Set("notify_url", notifyURL)
   
-  res, err := client.Do(params, API_SMS_URL)
+  res, err := client.Do(params, SMS_API)
 
+  var smsTxn *SMSTxn
 	smsTxn = new(SMSTxn)
 	err = json.Unmarshal(res, smsTxn)
 

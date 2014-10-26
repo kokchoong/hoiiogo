@@ -9,7 +9,11 @@ import (
   "fmt"
 )
 
-const ROOT = "https://secure.hoiio.com/open"
+const (
+  ROOT = "https://secure.hoiio.com/open"
+  FAX_API = "/fax/send"
+  SMS_API = "/sms/send"
+)
 
 type Client interface {
 	Do(url.Values, string) ([]byte, error)
