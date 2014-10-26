@@ -13,7 +13,7 @@ const (
 )
 
 type Service interface {
-  New Service(string, string) *App
+  NewService(string, string) *App
   Do(url.Values, string) (*Txn, error)
   AppId() string
   AccessToken() string
